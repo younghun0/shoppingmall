@@ -1,0 +1,10 @@
+version: "3.1"
+
+services:
+  mariadb:
+    image: mariadb:10.9.4
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: password1234
+    ports:
+      - 3306:3306

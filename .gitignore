@@ -1,1 +1,2 @@
 .vagrant
+/vm/mariaDB/docker/mariaDB/data
