@@ -39,12 +39,12 @@ sudo yum -y install jenkins
 # jenkins 실행
 sudo systemctl start jenkins.service
 
-# 방화벽 설치
-sudo yum -y install firewalld
-sudo systemctl start firewalld
-sudo systemctl enable firewalld
-sudo firewall-cmd --permanent --remove-port=9090/tcp
-sudo firewall-cmd --permanent --zone=public --add-port=9090/tcp
+# # 방화벽 설치
+# sudo yum -y install firewalld
+# sudo systemctl start firewalld
+# sudo systemctl enable firewalld
+# sudo firewall-cmd --permanent --remove-port=8080/tcp
+# sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 
 sudo service jenkins start
 
