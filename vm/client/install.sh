@@ -62,6 +62,10 @@ worker.tomcat.host=localhost
 worker.tomcat.type=ajp13 
 worker.tomcat.lbfactor=1' | sudo tee -a /etc/httpd/conf/workers.properties
 # sudo vi /usr/local/apache-tomcat-8.5.84/conf/server.xml
+sudo sed -i '115d' /usr/local/apache-tomcat-8.5.84/conf/server.xml
+sudo sed -i '119d' /usr/local/apache-tomcat-8.5.84/conf/server.xml
+sudo sed -i '117 i\ secretRequired="false"' /usr/local/apache-tomcat-8.5.84/conf/server.xml
+sudo sed -i '116s/.*/address="0.0.0.0"/g' /usr/local/apache-tomcat-8.5.84/conf/server.xml
 
 
 # 재시작
