@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-@Mapper
+@Repository("com.flekdk77.shoppingmall.backoffice.dao.EvenMapper")
 public interface EventMapper {
-       public List<Event> getEventList();
+       public List<Event> getEventList() throws Exception;
 }

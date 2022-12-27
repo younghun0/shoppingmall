@@ -3,11 +3,11 @@ package com.flekdk77.shoppingmall.backoffice.dto;
 
 
 public class Event {
-    int id;
-    String title;
-    String content;
-    String created_at;
-    int created_by;
+    private int id;
+    private String title;
+    private String content;
+    private String created_at;
+    private int created_by;
 
     public int getId(){
         return id;
