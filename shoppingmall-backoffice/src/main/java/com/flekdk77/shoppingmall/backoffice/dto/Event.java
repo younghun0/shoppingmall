@@ -10,7 +10,9 @@ public class Event {
     private String created_at;
     private int created_by;
 
-    public Event(){}
+    public Event(){
+        super();
+    }
     public int getId(){
         return id;
     }
@@ -47,6 +49,12 @@ public class Event {
         this.title=title;
         this.content=content;
         this.created_at=created_at;
+        this.created_by=created_by;
+    }
+    public Event(String title,String content,int created_by){
+        super();
+        this.title=title;
+        this.content=content;
         this.created_by=created_by;
     }
 }

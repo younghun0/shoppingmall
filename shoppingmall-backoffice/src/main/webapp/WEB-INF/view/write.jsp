@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
 <title>이벤트 페이지</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,39 +11,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
- <style>
+  <style>
   .fakeimg {
     height: 200px;
     background: #aaa;
   }
   </style>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#writeBtn").click(function(){
-    	location.href ="write";
-    })
-    $.ajax({url: "eventList", success: function(result){
-        var html = "";
-    	result.forEach(function(item){
-        	html+="<tr><td>"+item.id+"</td>"
-            html+="<td><a href = 'view?id=" + item.id + "'>" + item.title + "</a>"
-            html+="<td>"+item.created_by+"</td>"
-            html+="<td>"+item.created_at+"</td>"
-        })
-       $("#listArea").append(html)
-       $('#example').DataTable();
-     }});
-     $("#deleteBtn").click(function(){
-    	location.href ="write";
-     })
-} );
-
-</script>
 </head>
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>이벤트</h1>
+  <h1>글쓰기</h1>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -64,21 +40,22 @@ $(document).ready(function() {
 <div class="container" style="margin-top:30px">
 	<div class="row">
 		<div class="col-sm-12">
-	      <h2>게시판</h2>
-			<table id="example" class="display" style="width:100%">
-		        <thead>
-		            <tr>
-		                <th>#</th>
-		                <th>제목</th>
-		                <th>작성자</th>
-		                <th>작성일</th>
-		            </tr>
-		        </thead>
-		        <tbody id = "listArea">
-		        </tbody>
-		    </table>
-
-			<button type="button" class="btn btn-primary" id = "writeBtn">글쓰기</button>
+	      <h2>글쓰기</h2>
+	        <form action="writeAction" method = "POST" enctype="multipart/form-data">
+				<div class="form-group">
+				  <label for="usr">제목:</label>
+				  <input type="text" class="form-control" id="title" name = "title">
+				</div>
+			    <div class="form-group">
+			      <label>작성자: 숫자만</label>
+			      <input type="text" value="" class="form-control" id="created_by" name="created_by">
+			    </div>
+			    <div class="form-group">
+				  <label for="comment">내용:</label>
+				  <textarea class="form-control" rows="5" id="content" name = "content"></textarea>
+				</div>
+			    <button type="submit" class="btn btn-primary">글쓰기</button>
+			  </form>
 		</div>
 	</div>
 </div>

@@ -18,4 +18,7 @@ public class EventService {
             return eventMapper.getEvent();
         }
 
+        public boolean addEvent(Event e){
+            return eventMapper.addEvent(e);
+        }
 }

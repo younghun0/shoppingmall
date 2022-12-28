@@ -12,5 +12,19 @@
         EVENT
         ORDER BY id asc;
     </select>
-
+    <insert id="addEvent">
+        INSERT INTO
+        EVENT
+        (
+        title,
+        content,
+        created_by
+        )
+        VALUES
+        (
+        #{title},
+        #{content},
+        #{created_by}
+        )
+    </insert>
 </mapper>
