@@ -9,17 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<style>
-.fakeimg {
-  height: 200px;
-  background: #aaa;
-}
-.subReply {
-    padding-left: 50px;
-}
-</style>
 <script>
  var ID = getQueryStringObject().id;
  function getQueryStringObject() {
@@ -37,12 +26,18 @@
 }
 
   $.ajax({url: "eventView?id="+ID, success: function(result){
-       	 $("#title").text(result.title);
-    	 $("#content").text(result.content);
+         $('input[name=id]').attr('value',result.id);
+       	 $('input[name=title]').attr('value',result.title);
+    	 $("#content").val(result.content);
     	 $("#created_at").text(result.created_at);
-    	 $("#created_by").text(result.created_by);
+    	 $('input[name=created_by]').attr('value',result.created_by);
        }});
+$(document).ready(function() {
+    $("#eventBtn").click(function(){
+    	location.href ="event";
+    })
 
+})
 
   </script>
 </head>
@@ -58,24 +53,27 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
+			<form action="modifyAction" method = "POST" enctype="multipart/form-data">
+			<input type="text" value="" id="id" name="id" style="display:none">
 			<div class="row">
 				<div class="col-sm-6"style="display:flex">
-				    <h2>제목:</h2> <h2 id = "title"></h2>
+				    <h2>제목:</h2> <input type="text" class="form-control"value="" id="title" name = "title">
                     </div>
 				    <div class="col-sm-3" style="display:flex">
 				        <p>작성일 : </p><p id = "created_at"></p>
 				    </div>
 				    <div class="col-sm-3" style="display:flex">
-				        <p>작성자 : </p><p id = "created_by"></p>
+				        <p>작성자 : </p><input type="text" value="" class="form-control-plaintext" id="created_by" name="created_by" readonly>
                 </div>
 				<div class="col-sm-12">
-			      <pre id = "content"></pre>
+			      <textarea class="form-control" value="" rows="5" id="content" name = "content" ></textarea>
 				</div>
 			</div>
 		</div>
 		<button type="button" class="btn btn-primary" id = "eventBtn">목록</button>
-		<button type="button" class="btn btn-primary" id = "modifyBtn">수정</button>
-		<button type="button" class="btn btn-primary" id = "writeBtn">삭제</button>
+		<button type="submit" class="btn btn-primary" >수정완료</button>
+		<button type="button" class="btn btn-primary" id = "writeBtn">취소</button>
+		</form>
 	</div>
 </div>
 </div>

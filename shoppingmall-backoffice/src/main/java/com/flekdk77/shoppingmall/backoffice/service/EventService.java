@@ -24,4 +24,8 @@ public class EventService {
         public Event getEventOne(int id){
             return eventMapper.getEventOne(id);
         }
+
+        public boolean updateEvent(Event e){
+            return eventMapper.updateEvent(e);
+        }
 }

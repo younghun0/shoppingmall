@@ -13,6 +13,8 @@ public class Event {
     public Event(){
         super();
     }
+
+
     public int getId(){
         return id;
     }
@@ -57,4 +59,12 @@ public class Event {
         this.content=content;
         this.created_by=created_by;
     }
+    public Event(int id, String title, String content, int created_by) {
+        super();
+        this.id=id;
+        this.title=title;
+        this.content=content;
+        this.created_by=created_by;
+    }
+
 }

@@ -43,7 +43,8 @@ public class IndexController {
     public String writeAction(
             HttpServletRequest req,@RequestParam("title")String title,
             @RequestParam("content")String content,
-            @RequestParam("created_by")int created_by) throws  IllegalStateException, IOException{
+            @RequestParam("created_by")int created_by) throws  IllegalStateException,
+            IOException{
         String PATH = req.getSession().getServletContext().getRealPath("/")+"resources/";
         eventService.addEvent(new Event(title,content,created_by));
         return "event";
@@ -63,5 +64,17 @@ public class IndexController {
         return "modify";
     }
 
+    @RequestMapping(value = "/modifyAction",method = RequestMethod.POST)
+    public String modifyAction(
+            HttpServletRequest req,
+            @RequestParam("id")int id,
+            @RequestParam("title")String title,
+            @RequestParam("content")String content,
+            @RequestParam("created_by")int created_by)throws IllegalStateException,
+            IOException{
+        String PATH =req.getSession().getServletContext().getRealPath("/")+"resources/";
+        eventService.updateEvent(new Event(id,title,content,created_by));
+        return "event";
+    }
 
 }

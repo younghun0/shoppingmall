@@ -37,4 +37,14 @@
         WHERE
         id=#{id}
     </select>
+    <update id="updateEvent">
+        UPDATE
+        EVENT
+        SET
+        title=#{title},
+        content=#{content},
+        updated_by=#{created_by}
+        WHERE
+        id=#{id}
+    </update>
 </mapper>
