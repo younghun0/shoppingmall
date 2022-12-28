@@ -20,22 +20,7 @@
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>글쓰기</h1>
-</div>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index">홈</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="event">게시판</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<%@ include file="./fix/header.jsp"%>
 
 <div class="container" style="margin-top:30px">
 	<div class="row">

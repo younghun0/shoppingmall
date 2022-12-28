@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>과제</title>
+<title>이벤트 페이지</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -37,53 +37,45 @@
 }
 
   $.ajax({url: "eventView?id="+ID, success: function(result){
-  console.log(result);
-	  $("#title").text(result.title);
-	  $("#contents").text(result.content);
-   }});
+       	 $("#title").text(result.title);
+    	 $("#content").text(result.content);
+    	 $("#created_at").text(result.created_at);
+    	 $("#created_by").text(result.created_by);
+       }});
 
 
   </script>
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>이벤트 페이지</h1>
-</div>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index">홈</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="event">게시판</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<%@ include file="./fix/header.jsp"%>
 
 <div class="container" style="margin-top:30px">
 	<div class="row">
 		<div class="col-sm-12">
-	      <h2>본문</h2>
+	      <h2>수정</h2>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6">
-	      <div id = "image"></div>
-		</div>
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<div class="row">
+				<div class="col-sm-6"style="display:flex">
+				    <h2>제목:</h2> <h2 id = "title"></h2>
+                    </div>
+				    <div class="col-sm-3" style="display:flex">
+				        <p>작성일 : </p><p id = "created_at"></p>
+				    </div>
+				    <div class="col-sm-3" style="display:flex">
+				        <p>작성자 : </p><p id = "created_by"></p>
+                </div>
 				<div class="col-sm-12">
-			      <h2 id = "title"></h2>
-				</div>
-				<div class="col-sm-12">
-			      <pre id = "contents"></pre>
+			      <pre id = "content"></pre>
 				</div>
 			</div>
 		</div>
+		<button type="button" class="btn btn-primary" id = "eventBtn">목록</button>
+		<button type="button" class="btn btn-primary" id = "modifyBtn">수정</button>
+		<button type="button" class="btn btn-primary" id = "writeBtn">삭제</button>
 	</div>
 </div>
 </div>

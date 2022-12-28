@@ -58,4 +58,10 @@ public class IndexController {
     public Event eventList(@RequestParam("id")int id){
         return eventService.getEventOne(id);
     }
+    @RequestMapping(value = "/modify",method = RequestMethod.GET)
+    public String modify(){
+        return "modify";
+    }
+
+
 }

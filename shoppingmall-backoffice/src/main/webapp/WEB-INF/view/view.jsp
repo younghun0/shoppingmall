@@ -39,32 +39,25 @@
 
   $.ajax({url: "eventView?id="+ID, success: function(result){
 	  $("#title").text(result.title);
-	  $("#contents").text(result.content);
+	  $("#content").text(result.content);
 	  $("#created_at").text(result.created_at);
 	  $("#created_by").text(result.created_by);
    }});
 
+$(document).ready(function() {
+    $("#eventBtn").click(function(){
+    	location.href ="event";
+    })
+    $("#modifyBtn").click(function(){
+      	location.href ="modify?id="+ID;
+    })
 
+})
   </script>
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>이벤트 페이지</h1>
-</div>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index">홈</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="event">게시판</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<%@ include file="./fix/header.jsp"%>
 
 <div class="container" style="margin-top:30px">
 	<div class="row">
@@ -85,10 +78,13 @@
 				        <p>작성자 : </p><p id = "created_by"></p>
                 </div>
 				<div class="col-sm-12">
-			      <pre id = "contents"></pre>
+			      <pre id = "content"></pre>
 				</div>
 			</div>
 		</div>
+		<button type="button" class="btn btn-primary" id = "eventBtn">목록</button>
+		<button type="button" class="btn btn-primary" id = "modifyBtn">수정</button>
+		<button type="button" class="btn btn-primary" id = "writeBtn">삭제</button>
 	</div>
 </div>
 </div>
