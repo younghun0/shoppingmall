@@ -10,6 +10,8 @@
         id, title, content, created_at, created_by
         FROM
         EVENT
+        WHERE
+        is_show=1
         ORDER BY id asc;
     </select>
     <insert id="addEvent">
@@ -27,4 +29,12 @@
         #{created_by}
         )
     </insert>
+    <select id="getEventOne" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
+        SELECT
+        id, title, content, created_at, created_by
+        FROM
+        EVENT
+        WHERE
+        id=#{id}
+    </select>
 </mapper>

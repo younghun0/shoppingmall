@@ -21,4 +21,7 @@ public class EventService {
         public boolean addEvent(Event e){
             return eventMapper.addEvent(e);
         }
+        public Event getEventOne(int id){
+            return eventMapper.getEventOne(id);
+        }
 }

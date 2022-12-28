@@ -49,4 +49,13 @@ public class IndexController {
         return "event";
     }
 
+    @RequestMapping(value = "/view",method = RequestMethod.GET)
+    public String view(){
+        return "view";
+    }
+    @RequestMapping(value = "/eventView",method = RequestMethod.GET)
+    @ResponseBody
+    public Event eventList(@RequestParam("id")int id){
+        return eventService.getEventOne(id);
+    }
 }
