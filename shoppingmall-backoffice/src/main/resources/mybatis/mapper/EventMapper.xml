@@ -5,7 +5,7 @@
 
 <mapper namespace="com.flekdk77.shoppingmall.backoffice.dao.EventMapper">
 
-    <select id="getEventList" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
+    <select id="getEvent" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
         id, title, content, created_at, created_by
         FROM

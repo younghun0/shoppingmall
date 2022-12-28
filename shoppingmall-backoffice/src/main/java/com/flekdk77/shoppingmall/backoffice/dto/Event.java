@@ -1,6 +1,7 @@
 package com.flekdk77.shoppingmall.backoffice.dto;
 
 
+import org.w3c.dom.events.EventTarget;
 
 public class Event {
     private int id;
@@ -9,6 +10,7 @@ public class Event {
     private String created_at;
     private int created_by;
 
+    public Event(){}
     public int getId(){
         return id;
     }
@@ -37,6 +39,14 @@ public class Event {
         return created_by;
     }
     public void setCreated_by(int created_by){
+        this.created_by=created_by;
+    }
+    public Event(int id, String title,String content,String created_at,int created_by){
+        super();
+        this.id=id;
+        this.title=title;
+        this.content=content;
+        this.created_at=created_at;
         this.created_by=created_by;
     }
 }
