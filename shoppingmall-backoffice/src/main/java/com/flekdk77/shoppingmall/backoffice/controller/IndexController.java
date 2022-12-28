@@ -77,4 +77,14 @@ public class IndexController {
         return "event";
     }
 
+    @RequestMapping(value = "/deleteAction",method = RequestMethod.POST)
+    public String deleteAction(
+            HttpServletRequest req,
+            @RequestParam("id")int id)throws IllegalStateException,
+            IOException{
+        String PATH=req.getSession().getServletContext().getRealPath("/")+"resources/";
+        eventService.deleteEvent(id);
+        return "event";
+    }
+
 }

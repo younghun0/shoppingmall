@@ -12,4 +12,6 @@ public interface EventMapper {
        public boolean addEvent(Event e);
        public Event getEventOne(int id);
        public boolean updateEvent(Event e);
+       public boolean deleteEvent(int id);
+
 }

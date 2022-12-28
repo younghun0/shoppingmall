@@ -33,6 +33,7 @@
 	  $("#content").text(result.content);
 	  $("#created_at").text(result.created_at);
 	  $("#created_by").text(result.created_by);
+	  $('input[name=id]').attr('value',result.id);
    }});
 
 $(document).ready(function() {
@@ -75,7 +76,10 @@ $(document).ready(function() {
 		</div>
 		<button type="button" class="btn btn-primary" id = "eventBtn">목록</button>
 		<button type="button" class="btn btn-primary" id = "modifyBtn">수정</button>
-		<button type="button" class="btn btn-primary" id = "writeBtn">삭제</button>
+		<form action="deleteAction" method = "POST" enctype="multipart/form-data">
+		<input type="text" value="" id="id" name="id" style="display:none">
+		<button type="submit" class="btn btn-primary" >삭제</button>
+		</form>
 	</div>
 </div>
 </div>

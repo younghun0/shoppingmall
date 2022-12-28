@@ -28,4 +28,7 @@ public class EventService {
         public boolean updateEvent(Event e){
             return eventMapper.updateEvent(e);
         }
+        public boolean deleteEvent(int id){
+            return eventMapper.deleteEvent(id);
+        }
 }
