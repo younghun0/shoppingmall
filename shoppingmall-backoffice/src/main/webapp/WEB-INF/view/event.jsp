@@ -33,11 +33,17 @@ $(document).ready(function() {
             html+="<td>"+item.created_at+"</td>"
         })
        $("#listArea").append(html)
-       $('#example').DataTable();
+       $('#example').DataTable({
+       // 현재 상태를 보존
+         	stateSave: true,
+           	scrollX: true,
+           	scrollY: false,
+           	columnDefs: [
+        		{ targets: 0, visible: false },
+           		{ targets: 1, width: 100 }
+           	]});
      }});
-     $("#deleteBtn").click(function(){
-    	location.href ="write";
-     })
+
 } );
 
 </script>
