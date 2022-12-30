@@ -18,15 +18,15 @@ public class EventService {
             return eventMapper.getEvent();
         }
 
-        public boolean addEvent(Event e){
-            return eventMapper.addEvent(e);
+        public boolean addEvent(Event event){
+            return eventMapper.addEvent(event);
         }
         public Event getEventOne(int id){
             return eventMapper.getEventOne(id);
         }
 
-        public boolean updateEvent(Event e){
-            return eventMapper.updateEvent(e);
+        public boolean updateEvent(Event event){
+            return eventMapper.updateEvent(event);
         }
         public boolean deleteEvent(int id){
             return eventMapper.deleteEvent(id);

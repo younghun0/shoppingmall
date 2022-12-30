@@ -7,12 +7,21 @@
 
     <select id="getEvent" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
-        id, title, content, created_at, created_by
+            id,
+            title,
+            content,
+            created_at,
+            created_by,
+            updated_at,
+            updated_by,
+            is_show,
+            start_at,
+            end_at,
+            is_state
         FROM
-        EVENT
-        WHERE
-        is_show=1
-        ORDER BY id asc;
+            EVENT
+        ORDER BY
+            id asc;
     </select>
     <insert id="addEvent">
         INSERT INTO
@@ -20,39 +29,52 @@
         (
         title,
         content,
-        created_by
+        created_by,
+        start_at,
+        end_at
         )
         VALUES
         (
         #{title},
         #{content},
-        #{created_by}
+        #{created_by},
+        #{start_at},
+        #{end_at}
         )
     </insert>
     <select id="getEventOne" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
-        id, title, content, created_at, created_by
+            id,
+            title,
+            content,
+            created_at,
+            created_by,
+            updated_at,
+            updated_by,
+            is_show,
+            start_at,
+            end_at
         FROM
-        EVENT
+            EVENT
         WHERE
-        id=#{id}
+            id=#{id}
     </select>
     <update id="updateEvent">
         UPDATE
-        EVENT
+            EVENT
         SET
-        title=#{title},
-        content=#{content},
-        updated_by=#{created_by}
+            title=#{title},
+            content=#{content},
+            updated_by=#{created_by}
         WHERE
-        id=#{id}
+            id=#{id}
     </update>
     <update id="deleteEvent">
         UPDATE
-        EVENT
+            EVENT
         SET
-        is_show=0
+            is_state=0
         WHERE
-        id=#{id}
+            id=#{id}
     </update>
 </mapper>

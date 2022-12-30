@@ -9,9 +9,13 @@ import java.util.List;
 public interface EventMapper {
 
        public List<Event> getEvent();
+
        public boolean addEvent(Event e);
+
        public Event getEventOne(int id);
+
        public boolean updateEvent(Event e);
+
        public boolean deleteEvent(int id);
 
 }
