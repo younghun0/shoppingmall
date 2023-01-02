@@ -1,5 +1,6 @@
 package com.flekdk77.shoppingmall.backoffice.controller;
 
+import com.flekdk77.shoppingmall.backoffice.common.Constants;
 import com.flekdk77.shoppingmall.backoffice.dto.Event;
 import com.flekdk77.shoppingmall.backoffice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -23,10 +21,19 @@ public class EventController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String event(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        List<Event> eventList = eventService.getEvent();
-        model.addAttribute("eventList", eventList);
-        model.addAttribute("page", page);
-        return "event/list";
+        try {
+            int total = eventService.getEventTatal();
+            List<Event> eventList = eventService.getEvent(page - 1, Constants.ROW_PER_PAGE);
+
+            model.addAttribute("eventList", eventList);
+            model.addAttribute("page", page);
+            model.addAttribute("total", total);
+            model.addAttribute("rowPerPage", Constants.ROW_PER_PAGE);
+
+            return "event/list";
+        } catch (Exception e) {
+            return "REDIRECT:/event/list";
+        }
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)

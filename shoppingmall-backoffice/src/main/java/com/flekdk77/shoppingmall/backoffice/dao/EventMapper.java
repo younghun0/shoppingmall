@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface EventMapper {
 
-       public List<Event> getEvent();
+       public List<Event> getEvent(int page,int countPage);
 
        public boolean addEvent(Event e);
 
@@ -17,5 +17,7 @@ public interface EventMapper {
        public boolean updateEvent(Event e);
 
        public boolean deleteEvent(int id);
+
+       public int getEventTotal();
 
 }

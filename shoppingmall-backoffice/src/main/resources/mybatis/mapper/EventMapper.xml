@@ -4,7 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.flekdk77.shoppingmall.backoffice.dao.EventMapper">
-
+    <select id="getEventTotal" resultType="int">
+        SELECT
+            count(*)
+        FROM
+            EVENT
+    </select>
     <select id="getEvent" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
             id,
@@ -20,8 +25,13 @@
             is_state
         FROM
             EVENT
+        WHERE
+            <if >
+                AND title LINK '%${title}%'
+            </if>
         ORDER BY
-            id asc;
+            id asc
+        LIMIT #{page}, #{countPage}
     </select>
     <insert id="addEvent">
         INSERT INTO

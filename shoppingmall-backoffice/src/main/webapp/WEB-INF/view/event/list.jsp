@@ -7,7 +7,34 @@
 	<div class="row">
 		<div class="col-sm-12">
             <h2>게시판</h2>
-            <table id="example" class="display" style="width:100%">
+            총 게시판 수 :${total}<br />
+
+            <form action="">
+                <input type="hidden" name="page" value="${param.page}" />
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>제목</th>
+                            <td><input type="text" name=""></td>
+                            <th colspan="2">노출 여부</th>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th>시작일시</th>
+                            <td></td>
+                            <th>종료일시</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button type="submit" style="width: 100%;">검색</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <table id="example" class="table" style="width:100%">
                 <caption style="display: none;">이벤트</caption>
                 <thead>
                     <tr>
@@ -25,10 +52,15 @@
                     </tr>
                 </thead>
 		        <tbody>
+		            <c:if test="${total <= 0}">
+		                <tr>
+		                    <td colspan="11">No Data.</td>
+		                </tr>
+		            </c:if>
 		            <c:forEach var="event" varStatus="status" items="${eventList}">
 		                <tr>
 		                    <td><input type="checkbox" /></td>
-		                    <td>${status.index}</td>
+		                    <td>${status.index+1}</td>
 		                    <td><a href="/event/view?id=${event.id}&page=${page}">${event.title}</a></td>
 		                    <td>${event.created_by}</td>
 		                    <td>${event.created_at}</td>
@@ -43,7 +75,12 @@
 		            </c:forEach>
 		        </tbody>
 		    </table>
-
+            <jsp:include page="../common/pagination.jsp">
+                <jsp:param name="url" value="/event" />
+                <jsp:param name="rowPerPage" value="${rowPerPage}" />
+                <jsp:param name="total" value="${total}" />
+                <jsp:param name="page" value="${page}" />
+            </jsp:include>
 			<a class="btn btn-primary" href="/event/write" id = "writeBtn">글쓰기</a>
 		</div>
 	</div>
