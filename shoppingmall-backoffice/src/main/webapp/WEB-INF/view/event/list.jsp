@@ -10,20 +10,27 @@
             총 게시판 수 :${total}<br />
 
             <form action="">
-                <input type="hidden" name="page" value="${param.page}" />
+                <input type="hidden" name="page" value="1" />
                 <table class="table">
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td><input type="text" name=""></td>
-                            <th colspan="2">노출 여부</th>
-                            <td colspan="2"></td>
+                            <td><input type="text" name="title" value="${title}"></td>
+                            <th >노출 여부</th>
+                            <td >
+                                <input type="radio" name="is_show" value="1"checked >노출
+                                <input type="radio" name="is_show" value="0">비노출
+                            </td>
                         </tr>
                         <tr>
                             <th>시작일시</th>
-                            <td></td>
+                            <td>
+                                <input type="datetime-local" class="form-control"  id="start_at" name = "start_at"value="${start_at}" >
+                            </td>
                             <th>종료일시</th>
-                            <td></td>
+                            <td>
+                                <input type="datetime-local" class="form-control"  id="end_at" name = "end_at" value="${end_at}">
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="4">
@@ -80,6 +87,10 @@
                 <jsp:param name="rowPerPage" value="${rowPerPage}" />
                 <jsp:param name="total" value="${total}" />
                 <jsp:param name="page" value="${page}" />
+                <jsp:param name="title" value="${title}" />
+                <jsp:param name="is_show" value="${is_show}" />
+                <jsp:param name="start_at" value="${start_at}" />
+                <jsp:param name="end_at" value="${end_at}" />
             </jsp:include>
 			<a class="btn btn-primary" href="/event/write" id = "writeBtn">글쓰기</a>
 		</div>

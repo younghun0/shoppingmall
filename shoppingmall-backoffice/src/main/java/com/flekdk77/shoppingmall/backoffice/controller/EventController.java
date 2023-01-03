@@ -20,15 +20,22 @@ public class EventController {
     private EventService eventService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String event(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String event(Model model, @RequestParam(value = "page", defaultValue = "1") int page,
+                        @RequestParam(value = "title",required=false) String title,
+                        @RequestParam(value = "is_show",defaultValue = "1") int is_show,
+                        @RequestParam(value = "start_at",required=false) String start_at,
+                        @RequestParam(value = "end_at",required=false) String end_at) {
         try {
-            int total = eventService.getEventTatal();
-            List<Event> eventList = eventService.getEvent(page - 1, Constants.ROW_PER_PAGE);
-
+            int total = eventService.getEventTatal(title,is_show,start_at,end_at);
+            List<Event> eventList = eventService.getEvent(((page - 1)*Constants.ROW_PER_PAGE), Constants.ROW_PER_PAGE,title,is_show,start_at,end_at);
             model.addAttribute("eventList", eventList);
             model.addAttribute("page", page);
             model.addAttribute("total", total);
             model.addAttribute("rowPerPage", Constants.ROW_PER_PAGE);
+            model.addAttribute("title", title);
+            model.addAttribute("is_show", is_show);
+            model.addAttribute("start_at", start_at);
+            model.addAttribute("end_at", end_at);
 
             return "event/list";
         } catch (Exception e) {

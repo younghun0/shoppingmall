@@ -9,6 +9,17 @@
             count(*)
         FROM
             EVENT
+        WHERE
+        IF
+        (#{title}!="",title LIKE CONCAT ('%',#{title},'%'),title LIKE '%%')
+        AND
+        is_show=#{is_show}
+        AND
+        IF
+        (#{start_at}!="",start_at >#{start_at} ,start_at like '%%')
+        AND
+        IF
+        (#{end_at}!="", #{end_at} > end_at,end_at like '%%')
     </select>
     <select id="getEvent" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
@@ -26,9 +37,16 @@
         FROM
             EVENT
         WHERE
-            <if >
-                AND title LINK '%${title}%'
-            </if>
+            IF
+                (#{title}!="",title LIKE CONCAT ('%',#{title},'%'),title LIKE '%%')
+            AND
+                is_show=#{is_show}
+            AND
+            IF
+                (#{start_at}!="",start_at >#{start_at} ,start_at like '%%')
+            AND
+            IF
+                (#{end_at}!="", #{end_at} > end_at,end_at like '%%')
         ORDER BY
             id asc
         LIMIT #{page}, #{countPage}

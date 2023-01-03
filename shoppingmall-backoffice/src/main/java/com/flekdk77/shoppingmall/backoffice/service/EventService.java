@@ -14,8 +14,8 @@ public class EventService {
         @Autowired
         private EventMapper eventMapper;
 
-        public List<Event> getEvent(int page,int countPage){
-            return eventMapper.getEvent(page,countPage);
+        public List<Event> getEvent(int page,int countPage,String title,int is_show,String start_at,String end_at){
+            return eventMapper.getEvent(page,countPage,title,is_show,start_at,end_at);
         }
         public boolean addEvent(Event event){
             return eventMapper.addEvent(event);
@@ -30,7 +30,7 @@ public class EventService {
         public boolean deleteEvent(int id){
             return eventMapper.deleteEvent(id);
         }
-        public int getEventTatal(){
-            return eventMapper.getEventTotal();
+        public int getEventTatal(String title,int is_show,String start_at,String end_at){
+            return eventMapper.getEventTotal(title,is_show,start_at,end_at);
         }
 }
