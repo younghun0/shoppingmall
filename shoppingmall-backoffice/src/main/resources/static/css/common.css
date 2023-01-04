@@ -1,8 +1,14 @@
+ul,li{
+    list-style:none;
+    padding-left:0px;
+}
 ul.pagination {
     display: flex;
     justify-content: center;
 }
-
+div.margin-bottom{
+    margin-bottom:30px;
+}
 div.table-tool {
     display: flex;
     justify-content: space-between;

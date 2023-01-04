@@ -102,8 +102,10 @@
         SET
             title=#{title},
             content=#{content},
-            updatedBy=#{created_by}
-        WHERES
+            updated_by=#{createdBy},
+            start_at=#{startAt},
+            end_at=#{endAt}
+        WHERE
             id=#{id}
     </update>
     <update id="deleteEvent">

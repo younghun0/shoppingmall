@@ -37,7 +37,7 @@
                         <a href="/event?${paramUrl}"  class="btn btn-primary">목록</a>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary" >수정완료</button>
+                        <button type="submit" id="updateButton" class="btn btn-primary" >수정완료</button>
                         <a href="/event/view?id=${param.id}${paramUrl}"  class="btn btn-danger">취소</a>
                     </div>
                 </div>
@@ -45,4 +45,33 @@
         </div>
     </div>
 </div>
+<script>
+     $("button#updateButton").on("click",function(e){
+            var titleInput = $('input[name=title]').val();
+            var contentInput = $('textarea[name=content]').val();
+            var startAtInput = $('input[name=startAt]').val();
+            var endAtInput = $('input[name=endAt]').val();
+            console.log(titleInput);
+             if(titleInput == ""){
+                alert("제목이 입력되지 않았습니다.");
+                return false;
+            }
+             if(contentInput == ""){
+                alert("내용이 입력되지 않았습니다.");
+                return false;
+            }
+             if(startAtInput == ""){
+                alert("시작일시가 입력되지 않았습니다.");
+                return false;
+            }
+            if(endAtInput == ""){
+                alert("종료일시가 입력되지 않았습니다.");
+                return false;
+            }
+            if(confirm("해당 내용으로 수정하시겠습니까?")){
+                return true;
+            }
+            else{return false;}
+    });
+</script>
 <%@ include file="../common/footer.jsp"%>
