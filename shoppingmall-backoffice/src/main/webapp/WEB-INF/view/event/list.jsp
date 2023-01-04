@@ -117,7 +117,7 @@
                         <jsp:param name="endAt" value="${endAt}" />
                     </jsp:include>
                     <div class="row">
-                        <div class="col-12 table-tool margin-bottom">
+                        <div class="col-12 table-tool">
                             <div>
                                 <button type="button" id="deleteButton" class="btn btn-danger">삭제</button>
                             </div>
@@ -138,13 +138,33 @@
 
     $("button#deleteButton").on("click", function(e) {
         var idBoxes = $('input[name=idBox]:checked');
+        var idArray = new Array();
+        console.log(idBoxes.val());
+        $('input[name=idBox]:checked').each(function(){
+            idArray.push(this.value);
+        });
+        console.log(idArray);
+
+
         if (idBoxes && idBoxes.length < 1) {
             alert("선택된 항목이 없습니다.");
             return;
         };
 
         if (confirm("정말로 삭제하시겠습니까?")) {
-           alert("test...");
+           $.ajax({
+                type:'POST',
+                url:'event/selectBox',
+                data:{
+                'id':idArray},
+                dataType:'json',
+                traditional: true,
+                success:function(res){
+                },
+                error:function(er){
+                }
+           });
+            window.location.reload();
         }
     });
 </script>

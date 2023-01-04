@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -78,9 +79,16 @@ public class EventController {
 
     @RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
     public String deleteAction(
-            @RequestParam("idBox") int id) {
+            @RequestParam("id") int id) {
         eventService.deleteEvent(id);
         return "redirect:/event/list";
+    }
+
+    @RequestMapping(value = "/selectBox", method = RequestMethod.POST)
+    public String selectBox(HttpServletRequest request,String[] id) {
+        System.out.println("ㅇㅇ");
+        eventService.deleteEventArr(id);
+        return "redirect:/event";
     }
 }
 

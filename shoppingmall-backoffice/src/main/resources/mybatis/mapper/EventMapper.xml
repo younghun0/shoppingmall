@@ -15,9 +15,7 @@
             <if test='title != null and title != ""'>
                 AND title LIKE CONCAT('%',#{title},'%')
             </if>
-            <if test='isShow != null and isShow != ""'>
                 AND is_show = #{isShow}
-            </if>
             <if test='startAt != null and startAt != ""'>
                 AND start_at > #{startAt}
             </if>
@@ -44,9 +42,7 @@
             <if test='title != null and title != ""'>
                 AND title LIKE CONCAT('%',#{title},'%')
             </if>
-            <if test='isShow != null and isShow != ""'>
                 AND is_show = #{isShow}
-            </if>
             <if test='startAt != null and startAt != ""'>
                 AND start_at > #{startAt}
             </if>
@@ -103,6 +99,7 @@
             title=#{title},
             content=#{content},
             updated_by=#{createdBy},
+
             start_at=#{startAt},
             end_at=#{endAt}
         WHERE
@@ -115,5 +112,15 @@
             is_show=0
         WHERE
             id=#{id}
+    </update>
+    <update id="deleteEventArr">
+        UPDATE
+            EVENT
+        SET
+            is_show=0
+        WHERE
+        <foreach collection="array" item="id" open="(" close=")" separator="or">
+            id=#{id.value}
+        </foreach>
     </update>
 </mapper>

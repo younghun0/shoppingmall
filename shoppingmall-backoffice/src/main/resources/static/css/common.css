@@ -42,7 +42,9 @@ table.search-table th {
 .display-flex {
     display: flex;
 }
-
+footer{
+    margin-top : 30px;
+}
 .justify-content-space-between {
     justify-content: space-between;
 }

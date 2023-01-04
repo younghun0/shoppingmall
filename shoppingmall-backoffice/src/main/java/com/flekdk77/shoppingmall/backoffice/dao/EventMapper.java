@@ -21,4 +21,5 @@ public interface EventMapper {
 
        public int getEventTotal(GetEventListDto getEventListDto);
 
+       public boolean deleteEventArr(String[] id);
 }

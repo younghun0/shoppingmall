@@ -34,5 +34,8 @@ public class EventService {
         public int getEventTatal(GetEventListDto getEventListDto){
             return eventMapper.getEventTotal(getEventListDto);
         }
+        public boolean deleteEventArr(String[] id){
+            return eventMapper.deleteEventArr(id);
+        }
 
 }
