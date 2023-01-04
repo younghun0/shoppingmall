@@ -18,10 +18,10 @@
 				    <h2>제목:</h2> <input type="text" class="form-control"value="${event.title}" id="title" name = "title">
                     </div>
 				    <div class="col-sm-3" style="display:flex">
-				        <p>작성일 :${event.created_at} </p>
+				        <p>작성일 :${event.createdAt} </p>
 				    </div>
 				    <div class="col-sm-3" style="display:flex">
-				        <p>작성자 :<input type="text" class="form-control"value="${event.created_by}" id="created_by" name = "created_by"readonly ></p>
+				        <p>작성자 :<input type="text" class="form-control"value="${event.createdBy}" id="createdBy" name = "createdBy"readonly ></p>
                 </div>
 
 				<div class="col-sm-12">

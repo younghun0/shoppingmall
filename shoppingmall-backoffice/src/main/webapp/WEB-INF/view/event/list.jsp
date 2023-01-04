@@ -7,55 +7,79 @@
 	<div class="row">
 		<div class="col-sm-12">
             <h2>게시판</h2>
-            총 게시판 수 :${total}<br />
 
-            <form action="">
+            <form class="search-form">
                 <input type="hidden" name="page" value="1" />
-                <table class="table">
+                <table class="table search-table">
                     <tbody>
                         <tr>
                             <th>제목</th>
                             <td><input type="text" name="title" value="${title}"></td>
                             <th >노출 여부</th>
                             <td >
-                                <input type="radio" name="is_show" value="1"checked >노출
-                                <input type="radio" name="is_show" value="0">비노출
+                                <input type="radio" name="isShow" value="1" "${isShow == 1 ?" checked ": ""}" >노출
+                                <input type="radio" name="isShow" value="0" "${isShow == 0 ?" checked ": ""}" >비노출
                             </td>
                         </tr>
                         <tr>
                             <th>시작일시</th>
                             <td>
-                                <input type="datetime-local" class="form-control"  id="start_at" name = "start_at"value="${start_at}" >
+                                <input type="datetime-local" class="form-control"  id="startAt" name = "startAt"value="${startAt}" >
                             </td>
                             <th>종료일시</th>
                             <td>
-                                <input type="datetime-local" class="form-control"  id="end_at" name = "end_at" value="${end_at}">
+                                <input type="datetime-local" class="form-control"  id="endAt" name = "endAt" value="${endAt}">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <button type="submit" style="width: 100%;">검색</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">검색</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </form>
-
-            <table id="example" class="table" style="width:100%">
+            <hr />
+            <div class="row margin-bottom-16">
+                <div class="col-12 display-flex justify-content-space-between">
+                    <form method="GET" action="/event" name="sortForm">
+                        <input type="hidden" name="page" value="${page}"/>
+                        <input type="hidden" name="title" value="${title}"/>
+                        <input type="hidden" name="isShow" value="${isShow}"/>
+                        <input type="hidden" name="startAt" value="${startAt}"/>
+                        <input type="hidden" name="endAt" value="${endAt}"/>
+                        <label for="sort" class="font-weight-bold">정렬옵션:&nbsp;</label>
+                        <select id="sort" name="sort">
+                            <option>선택</option>
+                            <option value="title" ${param.sort == "title" ? "selected" : ""}>제목순</option>
+                            <option value="created_at"  ${param.sort == "created_at" ? "selected" : ""}>작성일순</option>
+                            <option value="updated_at" ${param.sort == "updated_at" ? "selected" : ""}>수정일순</option>
+                            <option value="is_show" ${param.sort == "is_show" ? "selected" : ""}>노출여부</option>
+                            <option value="start_at" ${param.sort == "start_at" ? "selected" : ""}>시작일순</option>
+                            <option value="end_at" ${param.sort == "end_at" ? "selected" : ""}>종료일순</option>
+                        </select>
+                    </form>
+                    <div>
+                        총 게시물 수: ${total}
+                    </div>
+                </div>
+            </div>
+            <table id="eventBoard" class="table" style="width:100%">
                 <caption style="display: none;">이벤트</caption>
                 <thead>
                     <tr>
-                        <th><input type="checkbox" /></th>
-                        <th>NO</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>수정자</th>
-                        <th>수정일</th>
-                        <th>노출여부</th>
-                        <th>활성화여부</th>
-                        <th>시작일</th>
-                        <th>종료일</th>
+                        <th class="center" style="width: 5%;">
+                            <input type="checkbox" id="selectAll" />
+                        </th>
+                        <th class="center" style="width: 5%;">NO</th>
+                        <th class="center" style="width: 20%;">제목</th>
+                        <th class="center" style="width: 10%;">노출<br />여부</th>
+                        <th class="center" style="width: 10%;">시작<br />일시</th>
+                        <th class="center" style="width: 10%;">종료<br />일시</th>
+                        <th class="center" style="width: 10%;">작성자</th>
+                        <th class="center" style="width: 10%;">작성<br />일시</th>
+                        <th class="center" style="width: 10%;">수정자</th>
+                        <th class="center" style="width: 10%;">수정<br />일시</th>
                     </tr>
                 </thead>
 		        <tbody>
@@ -66,17 +90,18 @@
 		            </c:if>
 		            <c:forEach var="event" varStatus="status" items="${eventList}">
 		                <tr>
-		                    <td><input type="checkbox" /></td>
-		                    <td>${status.index+1}</td>
-		                    <td><a href="/event/view?id=${event.id}&page=${page}">${event.title}</a></td>
-		                    <td>${event.created_by}</td>
-		                    <td>${event.created_at}</td>
-		                    <td>${event.updated_by}</td>
-		                    <td>${event.updated_at}</td>
-		                    <td>${event.is_show ? "노출" : "비노출"}</td>
-		                    <td>${event.is_state ? "활성화" : "비활성화"}</td>
-		                    <td>${event.start_at}</td>
-		                    <td>${event.end_at}</td>
+		                    <td class="center"><input type="checkbox" name="idBox" value="${event.id}" /></td>
+		                    <td class="center">${status.index + 1}</td>
+		                    <td class="middle">
+		                        <a href="/event/view?id=${event.id}&page=${page}">${event.title}</a>
+		                    </td>
+		                    <td class="center">${event.isShow ==1 ? "노출" : "비노출"}</td>
+		                    <td class="center">${event.startAt}</td>
+		                    <td class="center">${event.endAt}</td>
+		                    <td class="center">${event.createdBy}</td>
+		                    <td class="center">${event.createdAt}</td>
+		                    <td class="center">${event.updatedBy}</td>
+		                    <td class="center">${event.updatedAt}</td>
 
 		                </tr>
 		            </c:forEach>
@@ -88,12 +113,41 @@
                 <jsp:param name="total" value="${total}" />
                 <jsp:param name="page" value="${page}" />
                 <jsp:param name="title" value="${title}" />
-                <jsp:param name="is_show" value="${is_show}" />
-                <jsp:param name="start_at" value="${start_at}" />
-                <jsp:param name="end_at" value="${end_at}" />
+                <jsp:param name="isShow" value="${isShow}" />
+                <jsp:param name="startAt" value="${startAt}" />
+                <jsp:param name="endAt" value="${endAt}" />
             </jsp:include>
-			<a class="btn btn-primary" href="/event/write" id = "writeBtn">글쓰기</a>
+            <c:set var="paramUrl" value="page=${page}&title=${title}&isShow=${isShow}&startAt=${startAt}&endAt=${endAt}"/>
+            <div class="row">
+                <div class="col-12 table-tool">
+                    <div>
+                        <button type="button" id="deleteButton" class="btn btn-danger">삭제</button>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="/event/write?${paramUrl}" id = "writeBtn">글쓰기</a>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
+
+<script>
+    $("select[name=sort]").on("change", function(e){
+        $(document.sortForm).submit();
+    });
+
+    $("button#deleteButton").on("click", function(e) {
+        var idBoxes = $('input[name=idBox]:checked');
+        if (idBoxes && idBoxes.length < 1) {
+            alert("선택된 항목이 없습니다.");
+            return;
+        };
+
+        if (confirm("정말로 삭제하시겠습니까?")) {
+           alert("test...");
+        }
+    });
+</script>
+
 <%@ include file="../common/footer.jsp"%>

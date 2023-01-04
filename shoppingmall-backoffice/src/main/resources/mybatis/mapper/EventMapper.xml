@@ -4,24 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.flekdk77.shoppingmall.backoffice.dao.EventMapper">
-    <select id="getEventTotal" resultType="int">
+
+    <select id="getEventTotal" parameterType="com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto" resultType="int">
         SELECT
             count(*)
         FROM
             EVENT
         WHERE
-        IF
-        (#{title}!="",title LIKE CONCAT ('%',#{title},'%'),title LIKE '%%')
-        AND
-        is_show=#{is_show}
-        AND
-        IF
-        (#{start_at}!="",start_at >#{start_at} ,start_at like '%%')
-        AND
-        IF
-        (#{end_at}!="", #{end_at} > end_at,end_at like '%%')
+            1 = 1
+            <if test='title != null and title != ""'>
+                AND title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test='isShow != null and isShow != ""'>
+                AND is_show = #{isShow}
+            </if>
+            <if test='startAt != null and startAt != ""'>
+                AND start_at > #{startAt}
+            </if>
+            <if test='endAt != null and endAt != ""'>
+                AND   #{endAt} > end_at
+            </if>
     </select>
-    <select id="getEvent" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
+    <select id="getEvent" parameterType="com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
         SELECT
             id,
             title,
@@ -32,24 +36,29 @@
             updated_by,
             is_show,
             start_at,
-            end_at,
-            is_state
+            end_at
         FROM
             EVENT
         WHERE
-            IF
-                (#{title}!="",title LIKE CONCAT ('%',#{title},'%'),title LIKE '%%')
-            AND
-                is_show=#{is_show}
-            AND
-            IF
-                (#{start_at}!="",start_at >#{start_at} ,start_at like '%%')
-            AND
-            IF
-                (#{end_at}!="", #{end_at} > end_at,end_at like '%%')
+            1 = 1
+            <if test='title != null and title != ""'>
+                AND title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test='isShow != null and isShow != ""'>
+                AND is_show = #{isShow}
+            </if>
+            <if test='startAt != null and startAt != ""'>
+                AND start_at > #{startAt}
+            </if>
+            <if test='endAt != null and endAt != ""'>
+                AND  end_at > #{endAt}
+            </if>
         ORDER BY
-            id asc
-        LIMIT #{page}, #{countPage}
+            <if test='sort != null and sort != ""'>
+                ${sort} asc,
+            </if>
+            id desc
+        LIMIT #{startIndex}, #{rowPerPage}
     </select>
     <insert id="addEvent">
         INSERT INTO
@@ -65,9 +74,9 @@
         (
         #{title},
         #{content},
-        #{created_by},
-        #{start_at},
-        #{end_at}
+        #{createdBy},
+        #{startAt},
+        #{endAt}
         )
     </insert>
     <select id="getEventOne" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
@@ -93,15 +102,15 @@
         SET
             title=#{title},
             content=#{content},
-            updated_by=#{created_by}
-        WHERE
+            updatedBy=#{created_by}
+        WHERES
             id=#{id}
     </update>
     <update id="deleteEvent">
         UPDATE
             EVENT
         SET
-            is_state=0
+            is_show=0
         WHERE
             id=#{id}
     </update>

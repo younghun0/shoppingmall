@@ -3,6 +3,7 @@ package com.flekdk77.shoppingmall.backoffice.service;
 
 import com.flekdk77.shoppingmall.backoffice.dao.EventMapper;
 import com.flekdk77.shoppingmall.backoffice.dto.Event;
+import com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,23 +15,24 @@ public class EventService {
         @Autowired
         private EventMapper eventMapper;
 
-        public List<Event> getEvent(int page,int countPage,String title,int is_show,String start_at,String end_at){
-            return eventMapper.getEvent(page,countPage,title,is_show,start_at,end_at);
+        public List<Event> getEvent(GetEventListDto getEventListDto){
+            return eventMapper.getEvent(getEventListDto);
         }
-        public boolean addEvent(Event event){
-            return eventMapper.addEvent(event);
+        public boolean addEvent(GetEventListDto getEventListDto){
+            return eventMapper.addEvent(getEventListDto);
         }
         public Event getEventOne(int id){
             return eventMapper.getEventOne(id);
         }
 
-        public boolean updateEvent(Event event){
-            return eventMapper.updateEvent(event);
+        public boolean updateEvent(GetEventListDto getEventListDto){
+            return eventMapper.updateEvent(getEventListDto);
         }
         public boolean deleteEvent(int id){
             return eventMapper.deleteEvent(id);
         }
-        public int getEventTatal(String title,int is_show,String start_at,String end_at){
-            return eventMapper.getEventTotal(title,is_show,start_at,end_at);
+        public int getEventTatal(GetEventListDto getEventListDto){
+            return eventMapper.getEventTotal(getEventListDto);
         }
+
 }

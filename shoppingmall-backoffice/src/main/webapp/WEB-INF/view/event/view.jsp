@@ -16,13 +16,13 @@
 				    <h2>제목:</h2> ${event.title}</h2>
                     </div>
 				    <div class="col-sm-3" style="display:flex">
-				        <p>작성일 : ${event.created_at}</p>
+				        <p>작성일 : ${event.createdAt}</p>
 				    </div>
 				    <div class="col-sm-3" style="display:flex">
-				        <p>작성자 : ${event.created_by}</p>
+				        <p>작성자 : ${event.createdBy}</p>
                 </div>
 				<div class="col-sm-12">
-			      <pre id = "content"></pre>
+			      <span>${event.content}</span>
 				</div>
 			</div>
 		</div>

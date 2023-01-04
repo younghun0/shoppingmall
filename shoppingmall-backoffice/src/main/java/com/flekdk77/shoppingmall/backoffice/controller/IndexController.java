@@ -8,17 +8,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @Controller
 public class IndexController {
 
     @Autowired
     private EventService eventService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String root(){
+    public String root() {
         return "index";
     }
-    @RequestMapping(value="/index", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
