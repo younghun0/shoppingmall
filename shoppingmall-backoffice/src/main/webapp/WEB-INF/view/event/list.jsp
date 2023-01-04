@@ -6,8 +6,8 @@
 <div class="container" style="margin-top:30px">
 	<div class="row">
 		<div class="col-sm-12">
-            <h2>게시판</h2>
-
+            <h2>이벤트</h2>
+            <c:set var="paramUrl" value="page=${page}&title=${title}&isShow=${isShow}&startAt=${startAt}&endAt=${endAt}"/>
             <form class="search-form">
                 <input type="hidden" name="page" value="1" />
                 <table class="table search-table">
@@ -93,7 +93,7 @@
 		                    <td class="center"><input type="checkbox" name="idBox" value="${event.id}" /></td>
 		                    <td class="center">${status.index + 1}</td>
 		                    <td class="middle">
-		                        <a href="/event/view?id=${event.id}&page=${page}">${event.title}</a>
+		                        <a href="/event/view?id=${event.id}&${paramUrl}">${event.title}</a>
 		                    </td>
 		                    <td class="center">${event.isShow ==1 ? "노출" : "비노출"}</td>
 		                    <td class="center">${event.startAt}</td>
@@ -117,7 +117,6 @@
                 <jsp:param name="startAt" value="${startAt}" />
                 <jsp:param name="endAt" value="${endAt}" />
             </jsp:include>
-            <c:set var="paramUrl" value="page=${page}&title=${title}&isShow=${isShow}&startAt=${startAt}&endAt=${endAt}"/>
             <div class="row">
                 <div class="col-12 table-tool">
                     <div>

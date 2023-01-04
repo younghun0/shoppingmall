@@ -12,28 +12,37 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<form action="modifyAction" method = "POST" enctype="multipart/form-data">
-			<input type="number" value="${event.id}" id="id" name="id" style="display:none">
-			<div class="row">
-				<div class="col-sm-6"style="display:flex">
-				    <h2>제목:</h2> <input type="text" class="form-control"value="${event.title}" id="title" name = "title">
+			    <input type="hidden" value="${event.id}" id="id" name="id" >
+			    <div class="row">
+				    <div class="col-sm-6"style="display:flex">
+                        <h4>제목:</h4> <input type="text" class="form-control"value="${event.title}" id="title" name = "title">
                     </div>
-				    <div class="col-sm-3" style="display:flex">
-				        <p>작성일 :${event.createdAt} </p>
-				    </div>
-				    <div class="col-sm-3" style="display:flex">
-				        <p>작성자 :<input type="text" class="form-control"value="${event.createdBy}" id="createdBy" name = "createdBy"readonly ></p>
+                    <div class="col-sm-4" style="display:flex">
+                        <p>작성일 :${event.createdAt} </p>
+                    </div>
+                    <div class="col-sm-2" style="display:flex">
+                        <p>작성자 : ${event.createdBy}</p>
+                    </div>
+                    <hr/>
+                    <div class="col-sm-12">
+                        <textarea class="form-control" value="" rows="5" id="content" name = "content" >${event.content}</textarea>
+                    </div>
+                    <hr/>
+                    <div class="col-sm-12">
+                        <p>이벤트 기간 : <input type="datetime-local" class="from-control" id="startAt" name="startAt" value="${event.startAt}"> - <input type="datetime-local" class="from-control" id="endAt" name="endAt" value="${event.endAt}"> </p>
+                    </div>
                 </div>
-
-				<div class="col-sm-12">
-			      <textarea class="form-control" value="" rows="5" id="content" name = "content" >${event.content}</textarea>
-				</div>
-			</div>
-		</div>
-		<button type="button" class="btn btn-primary" id = "eventBtn">목록</button>
-		<button type="submit" class="btn btn-primary" >수정완료</button>
-		<button type="button" class="btn btn-primary" id = "writeBtn">취소</button>
-		</form>
-	</div>
-</div>
+                <div class="col-12 table-tool">
+                    <div>
+                        <a href="/event?${paramUrl}"  class="btn btn-primary">목록</a>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary" >수정완료</button>
+                        <a href="/event/view?id=${param.id}${paramUrl}"  class="btn btn-danger">취소</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <%@ include file="../common/footer.jsp"%>

@@ -57,18 +57,16 @@ public class EventController {
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public String view(Model model, @RequestParam("id") int id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String view(Model model, @RequestParam("id") int id) {
         Event event = eventService.getEventOne(id);
         model.addAttribute("event", event);
-        model.addAttribute("page", page);
         return "event/view";
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
-    public String modify(Model model, @RequestParam("id") int id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String modify(Model model, @RequestParam("id") int id) {
         Event event = eventService.getEventOne(id);
         model.addAttribute("event", event);
-        model.addAttribute("page", page);
         return "event/modify";
     }
 
