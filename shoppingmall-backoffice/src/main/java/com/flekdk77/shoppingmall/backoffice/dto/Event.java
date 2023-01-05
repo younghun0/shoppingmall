@@ -1,13 +1,23 @@
 package com.flekdk77.shoppingmall.backoffice.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class Event {
+
+    @NotNull
     private int id;
+    @NotNull
     private String title;
+    @NotNull
     private String content;
+    @NotNull
     private String createdAt;
+    @NotNull
     private int createdBy;
+
     private String updatedAt;
     private int updatedBy;
+    @NotNull
     private int isShow = 1;
     private String startAt;
     private String endAt;

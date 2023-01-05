@@ -8,6 +8,6 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <h3>index화면</h3>
-
+<a href="/event">이벤트페이지로</a>
 </body>
 </html>

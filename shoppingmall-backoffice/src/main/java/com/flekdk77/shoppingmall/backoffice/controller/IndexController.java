@@ -23,6 +23,10 @@ public class IndexController {
     public String index() {
         return "index";
     }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(){
+        return "login";
+    }
 
 
 }

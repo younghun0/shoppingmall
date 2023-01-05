@@ -58,14 +58,7 @@
             alert("내용이 입력되지 않았습니다.");
             return false;
         }
-         if(startAtInput == ""){
-            alert("시작일시가 입력되지 않았습니다.");
-            return false;
-        }
-        if(endAtInput == ""){
-            alert("종료일시가 입력되지 않았습니다.");
-            return false;
-        }
+
         if(confirm("해당 내용으로 등록하시겠습니까?")){
             return true;
         }

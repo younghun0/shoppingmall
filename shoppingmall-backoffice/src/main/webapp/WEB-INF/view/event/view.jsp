@@ -33,9 +33,9 @@
             </div>
             <div class="col-12 table-tool">
                 <div>
-                    <form action="deleteAction" method = "POST" enctype="multipart/form-data">
+                    <form action = "deleteAction" method = "POST">
                         <input type="hidden" value="${event.id}" id="id" name="id">
-                        <button type="submit" class="btn btn-danger" >삭제</button>
+                        <button type="submit" class="btn btn-danger">삭제</button>
                     </form>
                 </div>
                 <div>

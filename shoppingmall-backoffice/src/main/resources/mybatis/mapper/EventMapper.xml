@@ -62,17 +62,17 @@
         (
         title,
         content,
-        created_by,
-        start_at,
-        end_at
+        created_by
+        <if test='startAt != ""'>,start_at</if>
+        <if test='endAt != ""'>,end_at</if>
         )
         VALUES
         (
         #{title},
         #{content},
-        #{createdBy},
-        #{startAt},
-        #{endAt}
+        #{createdBy}
+        <if test='startAt != ""'>,#{startAt}</if>
+        <if test='endAt != ""'>,#{endAt}</if>
         )
     </insert>
     <select id="getEventOne" resultType="com.flekdk77.shoppingmall.backoffice.dto.Event">
@@ -99,9 +99,10 @@
             title=#{title},
             content=#{content},
             updated_by=#{createdBy},
-
-            start_at=#{startAt},
-            end_at=#{endAt}
+            <if test='startAt == ""'>start_at=null,</if>
+            <if test='startAt != ""'>start_at=#{startAt},</if>
+            <if test='endAt == ""'>end_at=null</if>
+            <if test='endAt != ""'>end_at=#{endAt}</if>
         WHERE
             id=#{id}
     </update>

@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li id="Previous"class ="page-item">
-                    <a class="page-link" href="${url}?page=${page-1}${searchUrl}" aria-label="Previous">
+                    <a class="page-link" href="${url}?page=${page == 1 ? 1 : page-1}${searchUrl}" aria-label="Previous">
                         <span aria-hidden="true">&lt;</span>
                     </a>
                 </li>

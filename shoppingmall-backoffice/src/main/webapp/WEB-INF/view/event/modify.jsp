@@ -60,7 +60,7 @@
                 alert("내용이 입력되지 않았습니다.");
                 return false;
             }
-            confirm("해당 내용으로 수정하시겠습니까?")){
+            if(confirm("해당 내용으로 수정하시겠습니까?")){
                 return true;
             }
             else{return false;}

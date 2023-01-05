@@ -54,7 +54,7 @@ public class EventController {
     @RequestMapping(value = "/writeAction", method = RequestMethod.POST)
     public String writeAction(GetEventListDto getEventListDto) {
         eventService.addEvent(getEventListDto);
-        return "redirect:/event";
+        return "redirect:/event/list";
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -74,14 +74,14 @@ public class EventController {
     @RequestMapping(value = "/modifyAction", method = RequestMethod.POST)
     public String modifyAction(GetEventListDto getEventListDto) {
         eventService.updateEvent(getEventListDto);
-        return "redirect:/event";
+        return "/event/list";
     }
 
     @RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
     public String deleteAction(
             @RequestParam("id") int id) {
         eventService.deleteEvent(id);
-        return "redirect:/event/list";
+        return "/event/list";
     }
 
     @RequestMapping(value = "/selectBox", method = RequestMethod.POST)

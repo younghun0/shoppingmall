@@ -96,8 +96,8 @@
                                         <a href="/event/view?id=${event.id}&${paramUrl}">${event.title}</a>
                                     </td>
                                     <td class="center">${event.isShow ==1 ? "노출" : "비노출"}</td>
-                                    <td class="center">${event.startAt}</td>
-                                    <td class="center">${event.endAt}</td>
+                                    <td class="center">${event.startAt == null ? "지정안함" : event.startAt}</td>
+                                    <td class="center">${event.endAt == null ? "지정안함" : event.endAt}</td>
                                     <td class="center">${event.createdBy}</td>
                                     <td class="center">${event.createdAt}</td>
                                     <td class="center">${event.updatedBy}</td>
