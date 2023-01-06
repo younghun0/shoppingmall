@@ -156,7 +156,7 @@
                 type:'POST',
                 url:'event/selectBox',
                 data:{
-                'id':idArray},
+                'ids':idArray},
                 dataType:'json',
                 traditional: true,
                 success:function(res){

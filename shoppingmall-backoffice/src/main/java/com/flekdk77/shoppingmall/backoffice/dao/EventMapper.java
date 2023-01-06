@@ -2,6 +2,7 @@ package com.flekdk77.shoppingmall.backoffice.dao;
 
 import com.flekdk77.shoppingmall.backoffice.dto.Event;
 import com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto;
+import com.flekdk77.shoppingmall.backoffice.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,5 +22,6 @@ public interface EventMapper {
 
        public int getEventTotal(GetEventListDto getEventListDto);
 
-       public boolean deleteEventArr(String[] id);
+       public boolean deleteEventArr(String[] ids);
+       public User findOneById(String id);
 }

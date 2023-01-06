@@ -120,8 +120,18 @@
         SET
             is_show=0
         WHERE
-        <foreach collection="array" item="id" open="(" close=")" separator="or">
-            id=#{id.value}
+        <foreach collection="array" item="ids" open="(" close=")" separator="or">
+            id=#{ids.value}
         </foreach>
     </update>
+    <select id="findOneById" resultType="com.flekdk77.shoppingmall.backoffice.dto.User">
+        SELECT
+            id,
+            password,
+            name
+        FROM
+            USER
+        WHERE
+            id=#{id}
+    </select>
 </mapper>

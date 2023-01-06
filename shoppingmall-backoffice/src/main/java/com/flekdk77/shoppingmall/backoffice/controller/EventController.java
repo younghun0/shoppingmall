@@ -27,7 +27,7 @@ public class EventController {
             getEventListDto.setStartIndex(((getEventListDto.getPage() - 1) * Constants.ROW_PER_PAGE));
             getEventListDto.setRowPerPage(Constants.ROW_PER_PAGE);
 
-            int total = eventService.getEventTatal(getEventListDto);
+            int total = eventService.getEventTotal(getEventListDto);
 
             List<Event> eventList = eventService.getEvent(getEventListDto);
             model.addAttribute("eventList", eventList);
@@ -54,7 +54,7 @@ public class EventController {
     @RequestMapping(value = "/writeAction", method = RequestMethod.POST)
     public String writeAction(GetEventListDto getEventListDto) {
         eventService.addEvent(getEventListDto);
-        return "redirect:/event/list";
+        return "redirect:/event";
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
@@ -74,20 +74,20 @@ public class EventController {
     @RequestMapping(value = "/modifyAction", method = RequestMethod.POST)
     public String modifyAction(GetEventListDto getEventListDto) {
         eventService.updateEvent(getEventListDto);
-        return "/event/list";
+        return "redirect:/event";
     }
 
     @RequestMapping(value = "/deleteAction", method = RequestMethod.POST)
     public String deleteAction(
             @RequestParam("id") int id) {
         eventService.deleteEvent(id);
-        return "/event/list";
+        return "redirect:/event";
     }
 
     @RequestMapping(value = "/selectBox", method = RequestMethod.POST)
-    public String selectBox(HttpServletRequest request,String[] id) {
+    public String selectBox(HttpServletRequest request,String[] ids) {
         System.out.println("ㅇㅇ");
-        eventService.deleteEventArr(id);
+        eventService.deleteEventArr(ids);
         return "redirect:/event";
     }
 }

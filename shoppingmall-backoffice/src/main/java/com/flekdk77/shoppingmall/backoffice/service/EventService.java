@@ -4,6 +4,7 @@ package com.flekdk77.shoppingmall.backoffice.service;
 import com.flekdk77.shoppingmall.backoffice.dao.EventMapper;
 import com.flekdk77.shoppingmall.backoffice.dto.Event;
 import com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto;
+import com.flekdk77.shoppingmall.backoffice.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +32,14 @@ public class EventService {
         public boolean deleteEvent(int id){
             return eventMapper.deleteEvent(id);
         }
-        public int getEventTatal(GetEventListDto getEventListDto){
+        public int getEventTotal(GetEventListDto getEventListDto){
             return eventMapper.getEventTotal(getEventListDto);
         }
-        public boolean deleteEventArr(String[] id){
-            return eventMapper.deleteEventArr(id);
+        public boolean deleteEventArr(String[] ids){
+            return eventMapper.deleteEventArr(ids);
+        }
+        public User findOneById(String id){
+            return eventMapper.findOneById(id);
         }
 
 }
