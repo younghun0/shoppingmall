@@ -6,6 +6,7 @@ import com.flekdk77.shoppingmall.backoffice.dto.Event;
 import com.flekdk77.shoppingmall.backoffice.dto.GetEventListDto;
 import com.flekdk77.shoppingmall.backoffice.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 @Service
 public class EventService {
 
+        @Autowired
+        private BCryptPasswordEncoder bCryptPasswordEncoder;
         @Autowired
         private EventMapper eventMapper;
 
@@ -40,6 +43,11 @@ public class EventService {
         }
         public User findOneById(String id){
             return eventMapper.findOneById(id);
+        }
+        public boolean addUser(User user){
+            String encoded = (bCryptPasswordEncoder.encode(user.getPassword()));
+            user.setPassword(encoded);
+            return eventMapper.addUser(user);
         }
 
 }

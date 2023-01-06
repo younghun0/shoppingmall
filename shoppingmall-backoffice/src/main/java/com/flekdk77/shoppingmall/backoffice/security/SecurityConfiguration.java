@@ -15,13 +15,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-    private final UserDetailsService userDetailsService;
-
-
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
 
     @Bean
     public static BCryptPasswordEncoder bCryptPasswordEncoder(){
@@ -32,7 +28,7 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
+                    .antMatchers("/","index","/signUp","/signUpAdd").permitAll()
                     .antMatchers("/event/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()

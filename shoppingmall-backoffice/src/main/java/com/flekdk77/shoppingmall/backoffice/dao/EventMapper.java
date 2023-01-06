@@ -24,4 +24,5 @@ public interface EventMapper {
 
        public boolean deleteEventArr(String[] ids);
        public User findOneById(String id);
+       public boolean addUser(User user);
 }

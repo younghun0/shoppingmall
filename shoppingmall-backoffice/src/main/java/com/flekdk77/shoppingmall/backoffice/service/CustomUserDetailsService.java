@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
         User user = eventMapper.findOneById(id);
-
+        System.out.println("아이디"+user.getId()+"비밀번호"+user.getPassword());
         if (user != null){
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
             return new org.springframework.security.core.userdetails.User(user.getId(),user.getPassword(),grantedAuthorities);

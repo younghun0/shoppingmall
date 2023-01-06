@@ -134,4 +134,17 @@
         WHERE
             id=#{id}
     </select>
+    <insert id="addUser">
+        INSERT INTO
+            USER(
+                id,
+                password,
+                name
+                )
+        values(
+            #{id},
+            #{password},
+            #{name}
+            )
+    </insert>
 </mapper>
