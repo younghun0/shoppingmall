@@ -47,6 +47,6 @@ sudo systemctl start jenkins.service
 # sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
 
 sudo service jenkins start
-
+    
 #비밀번호 확인
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword

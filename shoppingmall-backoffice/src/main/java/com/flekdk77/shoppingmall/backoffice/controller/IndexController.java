@@ -26,19 +26,5 @@ public class IndexController {
     public String index() {
         return "index";
     }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(HttpServletRequest request){
-        return "login";
-    }
 
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-    public String signUp(){
-        return "signUp";
-    }
-    @RequestMapping(value = "/signUpAdd", method = RequestMethod.POST)
-    public String addUser(User user){
-        System.out.println("컨트롤러");
-        eventService.addUser(user);
-        return "redirect:/login";
-    }
 }

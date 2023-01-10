@@ -29,7 +29,6 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/","index","/signUp","/signUpAdd").permitAll()
-                    .antMatchers("/event/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
